@@ -25,8 +25,8 @@ TEST(min_elem_matrix, test3_Positive_value) {
   int rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   std::vector<int> A(20);
-  for (int i = 1; i < 21; i++)
-    A[i] = i;
+  for (int i = 0; i < 20; i++)
+    A[i] = i+1;
   int A_min = 1;
   int rez = MinElemMatrix(A, 4, 5);
   if (rank == 0) {
