@@ -37,8 +37,8 @@ int MinElemMatrix(const std::vector<int> &matrix, int m, int n) {
   min = *std::min_element(del_rez.begin(), del_rez.end());
   if ((rank == 0)&((m*n) % size != 0)) {
     for (int i = del * size; i < m*n; i++) {
-      matrix[i] < min;
-      min = matrix[i];
+      if (matrix[i] < min)
+        min = matrix[i];
     }
   }
   return min;
