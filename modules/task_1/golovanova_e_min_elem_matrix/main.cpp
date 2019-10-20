@@ -1,6 +1,8 @@
+// Copyright 2019 Golovanova Elena
 #include <gtest-mpi-listener.hpp>
 #include <gtest/gtest.h>
 #include <vector>
+#include <algorithm>
 #include "../../../modules/task_1/golovanova_e_min_elem_matrix/min_elem_matrix.h"
 
 TEST(min_elem_matrix, test1) {

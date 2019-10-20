@@ -1,4 +1,6 @@
+// Copyright 2019 Golovanova Elena
 #include <mpi.h>
+#include <algorithm>
 #include <random>
 #include <ctime>
 #include <vector>
@@ -7,15 +9,15 @@
 
 std::vector<int> getRandomMatrix(int n, int m) {
   if (m > 0 && n > 0) {
+    std::mt19937 gen;
+    gen.seed(static_cast<unsigned int>(time(0)));
     std::vector<int> matrix(m * n);
     for (int i = 0; i < m * n; i++) {
-      srand(time(0));
-      matrix[i] = rand() % 100;
+      matrix[i] = gen() % 100;
       std::cout << matrix[i];
     }
     return matrix;
-  }
-  else {
+  } else {
     throw "Error";
   }
 }
