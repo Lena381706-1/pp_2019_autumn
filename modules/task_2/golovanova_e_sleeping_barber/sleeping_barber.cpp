@@ -8,7 +8,8 @@
 
 void CutTime(double visitorTime) {
   double CutTime = MPI_Wtime();
-  while (MPI_Wtime() - CutTime < visitorTime) {
+  double vt = visitorTime / 1000;
+  while (MPI_Wtime() - CutTime < vt) {
   }
 }
 
