@@ -10,8 +10,7 @@
 void Barber(int visitorTime, int size) {
     std::cout << "Barber works" << std::endl;
     int flag1 = 0;
-    while (flag1 != (size - 1))
-    {
+    while (flag1 != (size - 1)) {
       MPI_Status status;
       MPI_Recv(&visitorTime, 1, MPI_INT, MPI_ANY_SOURCE, 1, MPI_COMM_WORLD, &status);
       std::cout << "I am barber. I am cutting for " << visitorTime << std::endl;
@@ -33,9 +32,9 @@ void SleepingBarber() {
   int size, rank;
     MPI_Comm_size(MPI_COMM_WORLD, &size);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    if (size < 2)
+    if (size < 2) {
       throw "Error";
-    else {
+    } else {
       int visitorTime = 0;
       if (rank == 0)
         Barber(visitorTime, size);
