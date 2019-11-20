@@ -38,7 +38,7 @@ void SleepingBarber() {
       int visitorTime = 0;
       if (rank == 0) {
         Barber(visitorTime, size);
-      } else { 
+      } else {
         Visitor(visitorTime, rank);
         }
     }
