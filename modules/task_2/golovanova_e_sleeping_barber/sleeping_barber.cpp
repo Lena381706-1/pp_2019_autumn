@@ -4,27 +4,32 @@
 #include <random>
 #include <ctime>
 #include <iostream>
-#include <Windows.h>
 #include "../../../modules/task_2/golovanova_e_sleeping_barber/sleeping_barber.h"
 
-void Barber(int visitorTime, int size) {
+void CutTime(double visitorTime) {
+  double CutTime = MPI_Wtime();
+  while (MPI_Wtime() - CutTime < visitorTime) {
+  }
+}
+
+void Barber(double visitorTime, int size) {
     std::cout << "Barber works" << std::endl;
     int flag1 = 0;
     while (flag1 != (size - 1)) {
       MPI_Status status;
-      MPI_Recv(&visitorTime, 1, MPI_INT, MPI_ANY_SOURCE, 1, MPI_COMM_WORLD, &status);
+      MPI_Recv(&visitorTime, 1, MPI_DOUBLE, MPI_ANY_SOURCE, 1, MPI_COMM_WORLD, &status);
       std::cout << "I am barber. I am cutting for " << visitorTime << std::endl;
-      Sleep(visitorTime);
+      CutTime(visitorTime);
       flag1++;
       std::cout << "I am end" << std::endl;
     }
 }
 
-void Visitor(int visitorTime, int rank) {
+void Visitor(double visitorTime, int rank) {
   std::mt19937 gen;
   gen.seed(static_cast<unsigned int>(time(0)));
   visitorTime = rank + gen() % 10;
-  MPI_Ssend(&visitorTime, 1, MPI_INT, 0, 1, MPI_COMM_WORLD);
+  MPI_Ssend(&visitorTime, 1, MPI_DOUBLE, 0, 1, MPI_COMM_WORLD);
   std::cout << "Visitor is  " << rank << std::endl;
 }
 
@@ -35,7 +40,7 @@ void SleepingBarber() {
     if (size < 2) {
       throw "Error";
     } else {
-      int visitorTime = 0;
+      double visitorTime = 0;
       if (rank == 0) {
         Barber(visitorTime, size);
       } else {
