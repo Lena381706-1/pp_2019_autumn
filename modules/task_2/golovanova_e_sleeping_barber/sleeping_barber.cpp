@@ -5,7 +5,7 @@
 #include <ctime>
 #include <iostream>
 #include <Windows.h>
-#include "../../../modules/task_2/golovanova_e_sleeping_barber/golovanova_e_sleeping_barber.h"
+#include "../../../modules/task_2/golovanova_e_sleeping_barber/sleeping_barber.h"
 
 void Barber(int visitorTime, int size) {
     std::cout << "Barber works" << std::endl;
@@ -36,9 +36,11 @@ void SleepingBarber() {
       throw "Error";
     } else {
       int visitorTime = 0;
-      if (rank == 0)
+      if (rank == 0) {
         Barber(visitorTime, size);
-      else Visitor(visitorTime, rank);
+      } else { 
+        Visitor(visitorTime, rank);
+        }
     }
     std::cout << " The end!";
 }

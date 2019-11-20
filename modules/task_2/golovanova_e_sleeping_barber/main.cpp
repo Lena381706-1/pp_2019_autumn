@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include <vector>
 #include <algorithm>
-#include "../../../modules/task_2/golovanova_e_sleeping_barber/golovanova_e_sleeping_barber.h"
+#include "../../../modules/task_2/golovanova_e_sleeping_barber/sleeping_barber.h"
 
 
 TEST(Sleeping_Barber, test_1) {
